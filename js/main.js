@@ -6,7 +6,7 @@ const MIN_AMOUNT_LIKE = 15;
 const MAX_AMOUNT_LIKE = 200;
 
 // Количество комментариев
-const AMOUNT_COMMENTS = 3;
+const MAX_AMOUNT_COMMENTS = 15;
 
 // Идентификатор аватарок пользователей
 const MIN_AVATAR_IMAGE_NUMBER = 1;
@@ -68,7 +68,8 @@ function createComment(numberComment) {
 // Создание массива объектов с комментариями
 function createComments() {
   const comments = [];
-  for (let i = 0; i < AMOUNT_COMMENTS; i++) {
+  const amountComments = getRandomNumber(0, MAX_AMOUNT_COMMENTS); //хотела объявить с помощью let но линтер дает ошибку
+  for (let i = 0; i < amountComments; i++) {
     comments[i] = createComment(i + 1);
   }
   return comments;
