@@ -1,24 +1,19 @@
 // Количество фото
-const MIN_AMOUNT_PHOTO = 1;
-const MAX_AMOUNT_PHOTO = 25;
+const AMOUNT_PHOTO = 25;
 
 // Количество лайков
 const MIN_AMOUNT_LIKE = 15;
 const MAX_AMOUNT_LIKE = 200;
 
 // Количество комментариев
-const FIRST_COMMENT = 1;
-const LAST_COMMENT = 3;
+const AMOUNT_COMMENT = 3;
 
 // Идентификатор аватарок пользователей
-const FIRST_AVATAR = 1;
-const LAST_AVATAR = 6;
-
-// Массив с комментариями
-const descriptionComments = [];
+const MIN_AVATAR_IMAGE_NUMBER = 1;
+const MAX_AVATAR_IMAGE_NUMBER = 6;
 
 // Итоговый массив фото
-const Photos = [];
+const photos = [];
 
 // Массив с комментариями
 const COMMENT_MESSAGES =
@@ -61,32 +56,39 @@ function getRandomElementArray(array) {
 }
 
 // Функция создания объекта с комментариями
-function createDescriptionComments(numberComment) {
+function createComments(numberComment) {
   return {
     id: numberComment,
-    avatar: `img/avatar-${getRandomNumber(FIRST_AVATAR, LAST_AVATAR)}.svg`,
+    avatar: `img/avatar-${getRandomNumber(MIN_AVATAR_IMAGE_NUMBER, MAX_AVATAR_IMAGE_NUMBER)}.svg`,
     message: getRandomElementArray(COMMENT_MESSAGES),
     name: getRandomElementArray(NAME_USERS),
   };
 }
 
 // Создание массива объектов с комментариями
-for (let int = FIRST_COMMENT; int <= LAST_COMMENT; int++) {
-  descriptionComments[int] = createDescriptionComments(int);
+function getComments() {
+  const comments = [];
+  for (let i = 0; i < AMOUNT_COMMENT; i++) {
+    comments[i] = createComments(i + 1);
+  } return comments;
 }
 
 // Функция создания объекта с фото
-function createDescriptionPhotos(numberPhoto) {
+function createPhotos(numberPhoto) {
   return {
     id: numberPhoto,
     url: `photos/${numberPhoto}.jpg`,
     description: 'Новое фото пользователя',
     likes: getRandomNumber(MIN_AMOUNT_LIKE, MAX_AMOUNT_LIKE),
-    comments: descriptionComments,
+    comments: getComments(),
   };
 }
 
-// Создание массива объектов с Фото
-for (let int = MIN_AMOUNT_PHOTO; int <= MAX_AMOUNT_PHOTO; int++) {
-  Photos[int] = createDescriptionPhotos(int);
+// Функция создание массива объектов с Фото
+function getPhotos() {
+  for (let i = 0; i < AMOUNT_PHOTO; i++) {
+    photos[i] = createPhotos(i + 1);
+  }
+  return photos;
 }
+getPhotos();
