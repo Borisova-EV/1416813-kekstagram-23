@@ -1,12 +1,12 @@
 // Количество фото
-const AMOUNT_PHOTO = 25;
+const AMOUNT_PHOTOS = 25;
 
 // Количество лайков
 const MIN_AMOUNT_LIKE = 15;
 const MAX_AMOUNT_LIKE = 200;
 
 // Количество комментариев
-const AMOUNT_COMMENT = 3;
+const AMOUNT_COMMENTS = 3;
 
 // Идентификатор аватарок пользователей
 const MIN_AVATAR_IMAGE_NUMBER = 1;
@@ -56,7 +56,7 @@ function getRandomElementArray(array) {
 }
 
 // Функция создания объекта с комментариями
-function createComments(numberComment) {
+function createComment(numberComment) {
   return {
     id: numberComment,
     avatar: `img/avatar-${getRandomNumber(MIN_AVATAR_IMAGE_NUMBER, MAX_AVATAR_IMAGE_NUMBER)}.svg`,
@@ -66,29 +66,30 @@ function createComments(numberComment) {
 }
 
 // Создание массива объектов с комментариями
-function getComments() {
+function createComments() {
   const comments = [];
-  for (let i = 0; i < AMOUNT_COMMENT; i++) {
-    comments[i] = createComments(i + 1);
-  } return comments;
+  for (let i = 0; i < AMOUNT_COMMENTS; i++) {
+    comments[i] = createComment(i + 1);
+  }
+  return comments;
 }
 
 // Функция создания объекта с фото
-function createPhotos(numberPhoto) {
+function createPhoto(numberPhoto) {
   return {
     id: numberPhoto,
     url: `photos/${numberPhoto}.jpg`,
     description: 'Новое фото пользователя',
     likes: getRandomNumber(MIN_AMOUNT_LIKE, MAX_AMOUNT_LIKE),
-    comments: getComments(),
+    comments: createComments(),
   };
 }
 
 // Функция создание массива объектов с Фото
-function getPhotos() {
-  for (let i = 0; i < AMOUNT_PHOTO; i++) {
-    photos[i] = createPhotos(i + 1);
+function createPhotos() {
+  for (let i = 0; i < AMOUNT_PHOTOS; i++) {
+    photos[i] = createPhoto(i + 1);
   }
   return photos;
 }
-getPhotos();
+createPhotos();
