@@ -71,8 +71,8 @@ function createDescriptionComments(numberComment) {
 }
 
 // Создание массива объектов с комментариями
-for (let i = FIRST_COMMENT; i <= LAST_COMMENT; i++) {
-  descriptionComments[i] = createDescriptionComments(i);
+for (let int = FIRST_COMMENT; int <= LAST_COMMENT; int++) {
+  descriptionComments[int] = createDescriptionComments(int);
 }
 
 // Функция создания объекта с фото
@@ -87,6 +87,6 @@ function createDescriptionPhotos(numberPhoto) {
 }
 
 // Создание массива объектов с Фото
-for (let i = MIN_AMOUNT_PHOTO; i <= MAX_AMOUNT_PHOTO; i++) {
-  Photos[i] = createDescriptionPhotos(i);
+for (let int = MIN_AMOUNT_PHOTO; int <= MAX_AMOUNT_PHOTO; int++) {
+  Photos[int] = createDescriptionPhotos(int);
 }
