@@ -1,3 +1,10 @@
+//Импорт зависимостей
+import {getRandomNumber,getRandomElementArray} from './utils.js';
+
+// Идентификатор аватарок пользователей
+const MIN_AVATAR_IMAGE_NUMBER = 1;
+const MAX_AVATAR_IMAGE_NUMBER = 6;
+
 // Массив с комментариями
 const COMMENT_MESSAGES =
   [
@@ -27,3 +34,4 @@ function createComment(numberComment) {
     name: getRandomElementArray(NAME_USERS),
   };
 }
+export {createComment};

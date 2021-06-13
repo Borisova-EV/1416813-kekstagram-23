@@ -17,3 +17,5 @@ function getRandomElementArray(array) {
   const randomElementIndex = getRandomNumber(0, array.length - 1);
   return array[randomElementIndex];
 }
+
+export { getRandomNumber, getRandomElementArray };
