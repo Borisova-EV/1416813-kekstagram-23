@@ -1,5 +1,5 @@
 //Импорт зависимостей
-import {getRandomNumber} from './utils.js';
+import { getRandomNumber } from './utils.js';
 
 // Количество лайков
 const MIN_AMOUNT_LIKE = 15;
@@ -16,4 +16,4 @@ function createPhoto(numberPhoto, comments) {
   };
 }
 
-export {createPhoto};
+export { createPhoto };

@@ -1,5 +1,5 @@
 //Импорт зависимостей
-import {getRandomNumber,getRandomElementArray} from './utils.js';
+import { getRandomNumber, getRandomElementArray } from './utils.js';
 
 // Идентификатор аватарок пользователей
 const MIN_AVATAR_IMAGE_NUMBER = 1;
@@ -34,4 +34,4 @@ function createComment(numberComment) {
     name: getRandomElementArray(NAME_USERS),
   };
 }
-export {createComment};
+export { createComment };

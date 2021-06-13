@@ -1,7 +1,7 @@
 // Импорт модулей
-import {getRandomNumber} from './utils.js';
-import {createComment} from './create-comment.js';
-import {createPhoto} from './create-photo.js';
+import { getRandomNumber } from './utils.js';
+import { createComment } from './create-comment.js';
+import { createPhoto } from './create-photo.js';
 
 // Количество фото
 const AMOUNT_PHOTOS = 25;
@@ -22,7 +22,7 @@ function createComments() {
 function createPhotos() {
   const createDescriptionPhotos = new Array(AMOUNT_PHOTOS)
     .fill(null)
-    .map((el, index) => createPhoto(index + 1,createComments()));
+    .map((el, index) => createPhoto(index + 1, createComments()));
   return createDescriptionPhotos;
 }
 createPhotos();
