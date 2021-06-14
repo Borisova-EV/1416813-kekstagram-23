@@ -10,7 +10,6 @@ function getRandomNumber(firstNumber, secondNumber) {
 function checkStringLength(nameString, maxValue) {
   return nameString.length <= maxValue;
 }
-checkStringLength('comment', 140);
 
 // Функция нахождения случайного элемента из массива
 function getRandomElementArray(array) {
@@ -18,4 +17,4 @@ function getRandomElementArray(array) {
   return array[randomElementIndex];
 }
 
-export { getRandomNumber, getRandomElementArray };
+export { getRandomNumber, getRandomElementArray, checkStringLength };

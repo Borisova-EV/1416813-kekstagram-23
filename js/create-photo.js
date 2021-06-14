@@ -12,7 +12,7 @@ function createPhoto(numberPhoto, comments) {
     url: `photos/${numberPhoto}.jpg`,
     description: 'Новое фото пользователя',
     likes: getRandomNumber(MIN_AMOUNT_LIKE, MAX_AMOUNT_LIKE),
-    comments: comments, //наверное не очень хорошее название параметра
+    comments: comments,
   };
 }
 
