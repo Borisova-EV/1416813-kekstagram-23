@@ -1,13 +1,11 @@
-import { createPhotos } from './create-photos.js';
 // Блок для добавленных фото
 const PICTURES_CONTAINER = document.querySelector('.pictures');
 // Шаблон добавленных фото
 const PICTURE_TEMPLATE = document.querySelector('#picture').content.querySelector('.picture');
-const DESCRIPTION_PHOTOS = createPhotos();
 
 // Создание галереи добавленных фото
-function createGalleryPhotos () {
-  DESCRIPTION_PHOTOS.forEach((picture) => {
+function createGalleryPhotos(photos) {
+  photos.forEach((picture) => {
     const newPicture = PICTURE_TEMPLATE.cloneNode(true);
     newPicture.querySelector('.picture__img').src = picture.url;
     newPicture.querySelector('.picture__likes').textContent = picture.likes;
@@ -16,4 +14,4 @@ function createGalleryPhotos () {
   });
 }
 
-export {createGalleryPhotos};
+export { createGalleryPhotos };
