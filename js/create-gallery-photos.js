@@ -1,17 +1,19 @@
 // Блок для добавленных фото
-const PICTURES_CONTAINER = document.querySelector('.pictures');
+const picturesContainer = document.querySelector('.pictures');
 // Шаблон добавленных фото
-const PICTURE_TEMPLATE = document.querySelector('#picture').content.querySelector('.picture');
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const  galleryPhotosFragment = document.createDocumentFragment();
 
 // Создание галереи добавленных фото
 function createGalleryPhotos(photos) {
   photos.forEach((picture) => {
-    const newPicture = PICTURE_TEMPLATE.cloneNode(true);
+    const newPicture = pictureTemplate.cloneNode(true);
     newPicture.querySelector('.picture__img').src = picture.url;
     newPicture.querySelector('.picture__likes').textContent = picture.likes;
     newPicture.querySelector('.picture__comments').textContent = picture.comments.length;
-    PICTURES_CONTAINER.appendChild(newPicture);
+    galleryPhotosFragment.appendChild(newPicture);
   });
+  picturesContainer.appendChild(galleryPhotosFragment);
 }
 
 export { createGalleryPhotos };
