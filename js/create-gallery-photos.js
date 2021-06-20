@@ -2,7 +2,7 @@
 const picturesContainer = document.querySelector('.pictures');
 // Шаблон добавленных фото
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const  galleryPhotosFragment = document.createDocumentFragment();
+const galleryPhotosFragment = document.createDocumentFragment();
 
 // Создание галереи добавленных фото
 function createGalleryPhotos(photos) {
