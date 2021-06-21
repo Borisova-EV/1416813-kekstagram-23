@@ -16,4 +16,5 @@ function createGalleryPhotos(photos) {
   picturesContainer.appendChild(galleryPhotosFragment);
 }
 
+
 export { createGalleryPhotos };
