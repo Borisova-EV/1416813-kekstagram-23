@@ -46,7 +46,7 @@ function addDescriptionComments(comments) {
 // Показ полноэкранного изображения
 function showBigPicture(pictures) {
   bigPictureContainer.classList.remove('hidden');
-  bigPicture.src = pictures.url;
+  bigPicture.img.src = pictures.url;
   likesCount.textContent = pictures.likes;
   allCommentsAmount.textContent = pictures.comments.length;
   commentsList.removeChild(commentsItem[1]);
