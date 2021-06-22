@@ -10,6 +10,7 @@ const commentsItem = commentsList.children;
 const textPhoto = bigPictureContainer.querySelector('.social__caption');
 const commentsCount = bigPictureContainer.querySelector('.social__comment-count');
 const commentsLoader = bigPictureContainer.querySelector('.comments-loader');
+const bigPictureImage = bigPicture.querySelector('img');
 
 
 // Создание одного комментария
@@ -23,43 +24,51 @@ function createCommentElement() {
   commentUser.appendChild(textComment);
   return commentUser;
 }
+
 // Создание всех видимых комментариев
 function createCommentsUser(amount) {
-  const commentAmount = amount >= 5 ? '5' : amount;
+  const commentAmount = (amount >= 5) ? 5 : amount;
+
   for (let i = 1; i <= commentAmount; i++) {
     commentsFragment.appendChild(createCommentElement());
   }
+
   commentsList.appendChild(commentsFragment);
 }
 
 // Добавление описания комментариев
 function addDescriptionComments(comments) {
-  commentsItem.forEach((element, index) => {
-    const avatar = element.querySelector('.social__picture');
-    avatar.src = comments[index].avatar;
-    avatar.alt = comments[index].name;
-    const textComment = element.querySelector('.social__text');
-    textComment.textComment = comments[index].message;
-  });
+
+  for (let i = 0; i < commentsItem.length; i++) {
+    const commentUser = commentsItem[i];
+    const avatar = commentUser.querySelector('.social__picture');
+    avatar.src = comments[i].avatar;
+    avatar.alt = comments[i].name;
+    const textComment = commentUser.querySelector('.social__text');
+    textComment.textContent = comments[i].message;
+  }
 }
 
 // Показ полноэкранного изображения
 function showBigPicture(pictures) {
   bigPictureContainer.classList.remove('hidden');
-  bigPicture.img.src = pictures.url;
+
+  bigPictureImage.src = pictures.url;
   likesCount.textContent = pictures.likes;
   allCommentsAmount.textContent = pictures.comments.length;
-  commentsList.removeChild(commentsItem[1]);
-  commentsList.removeChild(commentsItem[0]);
+
+  for (let i = commentsItem.length - 1; i >= 0; i--) {
+    commentsItem[i].remove();
+  }
+
   createCommentsUser(pictures.comments.length);
   addDescriptionComments(pictures.comments);
+
   textPhoto.textContent = pictures.description;
+
   commentsCount.classList.add('hidden');
   commentsLoader.classList.add('hidden');
   document.body.classList.add('modal-open');
 }
 
-export { showBigPicture };
-
-/*
-Напишите код для закрытия окна по нажатию клавиши Esc и клике по иконке закрытия.*/
+export { bigPictureContainer, showBigPicture };

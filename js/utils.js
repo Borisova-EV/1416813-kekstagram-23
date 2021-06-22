@@ -18,10 +18,10 @@ function getRandomElementArray(array) {
 }
 
 //Функция создания нового элемента
-function createNewElement (tagName, className) {
+function createNewElement(tagName, className) {
   const newElement = document.createElement(tagName);
   newElement.classList.add(className);
   return newElement;
 }
 
-export { getRandomNumber, getRandomElementArray, checkStringLength,  createNewElement };
+export { getRandomNumber, getRandomElementArray, checkStringLength, createNewElement };
