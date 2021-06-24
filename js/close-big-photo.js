@@ -3,8 +3,8 @@ import { bigPictureContainer } from './create-big-photo.js';
 const bigPictureCloseButton = bigPictureContainer.querySelector('.big-picture__cancel');
 
 function closeBigPhoto() {
-  document.addEventListener('keydown', (event) => {
-    if (event.code === 'Escape') {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.code === 'Escape') {
       bigPictureContainer.classList.add('hidden');
       document.body.classList.remove('modal-open');
     }

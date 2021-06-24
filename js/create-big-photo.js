@@ -3,12 +3,12 @@ import { createNewElement } from './utils.js';
 const bigPictureContainer = document.querySelector('.big-picture');
 const bigPicture = bigPictureContainer.querySelector('.big-picture__img');
 const likesCount = bigPictureContainer.querySelector('.likes-count');
-const allCommentsAmount = bigPictureContainer.querySelector('.comments-count');
+const commentsCount = bigPictureContainer.querySelector('.comments-count');
 const commentsList = bigPictureContainer.querySelector('.social__comments');
 const commentsFragment = document.createDocumentFragment();
 const commentsItem = commentsList.children;
 const textPhoto = bigPictureContainer.querySelector('.social__caption');
-const commentsCount = bigPictureContainer.querySelector('.social__comment-count');
+const commentsCountContainer = bigPictureContainer.querySelector('.social__comment-count');
 const commentsLoader = bigPictureContainer.querySelector('.comments-loader');
 const bigPictureImage = bigPicture.querySelector('img');
 
@@ -55,7 +55,7 @@ function showBigPicture(pictures) {
 
   bigPictureImage.src = pictures.url;
   likesCount.textContent = pictures.likes;
-  allCommentsAmount.textContent = pictures.comments.length;
+  commentsCount.textContent = pictures.comments.length;
 
   for (let i = commentsItem.length - 1; i >= 0; i--) {
     commentsItem[i].remove();
@@ -66,7 +66,7 @@ function showBigPicture(pictures) {
 
   textPhoto.textContent = pictures.description;
 
-  commentsCount.classList.add('hidden');
+  commentsCountContainer.classList.add('hidden');
   commentsLoader.classList.add('hidden');
   document.body.classList.add('modal-open');
 }

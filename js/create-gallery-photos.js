@@ -22,6 +22,7 @@ function createGalleryPhotos(photos) {
 
     closeBigPhoto();
   });
+
   picturesContainer.appendChild(galleryPhotosFragment);
 }
 

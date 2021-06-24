@@ -2,7 +2,7 @@
 import { createPhotos } from './create-photos.js';
 import { createGalleryPhotos } from './create-gallery-photos.js';
 
-const Photos = createPhotos();
-createGalleryPhotos(Photos);
+const photos = createPhotos();
+createGalleryPhotos(photos);
 
 

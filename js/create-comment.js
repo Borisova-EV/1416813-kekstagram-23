@@ -26,9 +26,9 @@ const NAME_USERS =
   ];
 
 // Функция создания объекта с комментариями
-function createComment(numberComment) {
+function createComment(number) {
   return {
-    id: numberComment,
+    id: number,
     avatar: `img/avatar-${getRandomNumber(MIN_AVATAR_IMAGE_NUMBER, MAX_AVATAR_IMAGE_NUMBER)}.svg`,
     message: getRandomElementArray(COMMENT_MESSAGES),
     name: getRandomElementArray(NAME_USERS),
