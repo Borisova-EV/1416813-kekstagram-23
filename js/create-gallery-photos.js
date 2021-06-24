@@ -1,5 +1,4 @@
 import { showBigPicture } from './create-big-photo.js';
-import { closeBigPhoto } from './close-big-photo.js';
 
 // Блок для добавленных фото
 const picturesContainer = document.querySelector('.pictures');
@@ -16,11 +15,9 @@ function createGalleryPhotos(photos) {
     newPicture.querySelector('.picture__likes').textContent = picture.likes;
     newPicture.querySelector('.picture__comments').textContent = picture.comments.length;
 
-    galleryPhotosFragment.appendChild(newPicture);
-
     newPicture.addEventListener('click', () => showBigPicture(picture));
 
-    closeBigPhoto();
+    galleryPhotosFragment.appendChild(newPicture);
   });
 
   picturesContainer.appendChild(galleryPhotosFragment);
