@@ -71,7 +71,7 @@ function showBigPicture(pictures) {
   commentsLoader.classList.add('hidden');
   document.body.classList.add('modal-open');
 
-  closeBigPhoto();
+  closeBigPhoto(bigPictureContainer);
 }
 
 export { bigPictureContainer, showBigPicture };
