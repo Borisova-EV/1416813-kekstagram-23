@@ -50,28 +50,32 @@ function addDescriptionComments(comments) {
   }
 }
 
-// Показ полноэкранного изображения
-function showBigPicture(pictures) {
-  bigPictureContainer.classList.remove('hidden');
-
-  bigPictureImage.src = pictures.url;
-  likesCount.textContent = pictures.likes;
-  commentsCount.textContent = pictures.comments.length;
-
+// Редактирование комментариев
+function editComments (picture) {
   for (let i = commentsItem.length - 1; i >= 0; i--) {
     commentsItem[i].remove();
   }
-
-  createCommentsUser(pictures.comments.length);
-  addDescriptionComments(pictures.comments);
-
-  textPhoto.textContent = pictures.description;
+  createCommentsUser(picture.comments.length);
+  addDescriptionComments(picture.comments);
 
   commentsCountContainer.classList.add('hidden');
   commentsLoader.classList.add('hidden');
+}
+
+// Показ полноэкранного изображения
+function showBigPicture(picture) {
+  bigPictureContainer.classList.remove('hidden');
+
+  bigPictureImage.src = picture.url;
+  likesCount.textContent = picture.likes;
+  commentsCount.textContent = picture.comments.length;
+  textPhoto.textContent = picture.description;
+
+  editComments (picture);
+
   document.body.classList.add('modal-open');
 
   closeBigPhoto(bigPictureContainer);
 }
 
-export { bigPictureContainer, showBigPicture };
+export { showBigPicture };

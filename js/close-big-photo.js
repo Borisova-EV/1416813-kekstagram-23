@@ -1,5 +1,3 @@
-
-
 const bigPictureCloseButton = document.querySelector('.big-picture__cancel');
 
 function closeBigPhoto(container) {
