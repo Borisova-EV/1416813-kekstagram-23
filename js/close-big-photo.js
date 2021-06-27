@@ -1,17 +1,20 @@
+import { bigPictureContainer } from './create-big-photo.js';
 const bigPictureCloseButton = document.querySelector('.big-picture__cancel');
 
-function closeBigPhoto(container) {
-  document.addEventListener('keydown', (evt) => {
-    if (evt.code === 'Escape') {
-      container.classList.add('hidden');
-      document.body.classList.remove('modal-open');
-    }
-  });
+const closePhoto = () => {
+  bigPictureContainer.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+};
 
-  bigPictureCloseButton.addEventListener('click', () => {
-    container.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-  });
+const keyDownEsc = (evt) => {
+  if (evt.code === 'Escape') {
+    closePhoto();
+  }
+};
+
+function closeBigPhotoPopup() {
+  document.addEventListener('keydown', keyDownEsc);
+  bigPictureCloseButton.addEventListener('click', closePhoto);
 }
 
-export { closeBigPhoto };
+export { closeBigPhotoPopup };

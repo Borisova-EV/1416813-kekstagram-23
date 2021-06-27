@@ -1,5 +1,5 @@
 import { createNewElement } from './utils.js';
-import { closeBigPhoto } from './close-big-photo.js';
+import { closeBigPhotoPopup } from './close-big-photo.js';
 
 const bigPictureContainer = document.querySelector('.big-picture');
 const bigPicture = bigPictureContainer.querySelector('.big-picture__img');
@@ -75,7 +75,7 @@ function showBigPicture(picture) {
 
   document.body.classList.add('modal-open');
 
-  closeBigPhoto(bigPictureContainer);
+  closeBigPhotoPopup();
 }
 
-export { showBigPicture };
+export { bigPictureContainer, showBigPicture };
