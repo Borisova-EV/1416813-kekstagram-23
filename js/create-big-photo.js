@@ -51,7 +51,7 @@ function addDescriptionComments(comments) {
 }
 
 // Редактирование комментариев
-function editComments (picture) {
+function editComments(picture) {
   for (let i = commentsItem.length - 1; i >= 0; i--) {
     commentsItem[i].remove();
   }
@@ -71,7 +71,7 @@ function showBigPicture(picture) {
   commentsCount.textContent = picture.comments.length;
   textPhoto.textContent = picture.description;
 
-  editComments (picture);
+  editComments(picture);
 
   document.body.classList.add('modal-open');
 
