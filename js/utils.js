@@ -22,4 +22,7 @@ const createNewElement = (tagName, className) => {
   return newElement;
 };
 
-export { getRandomNumber, getRandomElementArray, checkStringLength, createNewElement };
+//Функция проверки нажатия клавиши Esc
+const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+
+export { getRandomNumber, getRandomElementArray, checkStringLength, createNewElement, isEscEvent };
