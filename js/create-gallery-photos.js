@@ -7,7 +7,7 @@ const pictureTemplate = document.querySelector('#picture').content.querySelector
 const galleryPhotosFragment = document.createDocumentFragment();
 
 // Создание галереи добавленных фото
-function createGalleryPhotos(photos) {
+const createGalleryPhotos = (photos) => {
   photos.forEach((picture) => {
     const newPicture = pictureTemplate.cloneNode(true);
 
@@ -21,6 +21,6 @@ function createGalleryPhotos(photos) {
   });
 
   picturesContainer.appendChild(galleryPhotosFragment);
-}
+};
 
 export { createGalleryPhotos };

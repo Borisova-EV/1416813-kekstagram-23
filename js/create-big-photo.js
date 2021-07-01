@@ -15,7 +15,7 @@ const bigPictureImage = bigPicture.querySelector('img');
 
 
 // Создание одного комментария
-function createCommentElement() {
+const createCommentElement = () => {
   const commentUser = createNewElement('li', 'social__comment');
   const user = createNewElement('img', 'social__picture');
   user.width = '35';
@@ -24,10 +24,10 @@ function createCommentElement() {
   const textComment = createNewElement('p', 'social__text');
   commentUser.appendChild(textComment);
   return commentUser;
-}
+};
 
 // Создание всех видимых комментариев
-function createCommentsUser(amount) {
+const createCommentsUser = (amount) => {
   const commentAmount = (amount >= 5) ? 5 : amount;
 
   for (let i = 1; i <= commentAmount; i++) {
@@ -35,10 +35,10 @@ function createCommentsUser(amount) {
   }
 
   commentsList.appendChild(commentsFragment);
-}
+};
 
 // Добавление описания комментариев
-function addDescriptionComments(comments) {
+const addDescriptionComments = (comments) => {
 
   for (let i = 0; i < commentsItem.length; i++) {
     const commentUser = commentsItem[i];
@@ -48,10 +48,10 @@ function addDescriptionComments(comments) {
     const textComment = commentUser.querySelector('.social__text');
     textComment.textContent = comments[i].message;
   }
-}
+};
 
 // Редактирование комментариев
-function editComments(picture) {
+const editComments = (picture) => {
   for (let i = commentsItem.length - 1; i >= 0; i--) {
     commentsItem[i].remove();
   }
@@ -60,10 +60,10 @@ function editComments(picture) {
 
   commentsCountContainer.classList.add('hidden');
   commentsLoader.classList.add('hidden');
-}
+};
 
 // Показ полноэкранного изображения
-function showBigPicture(picture) {
+const showBigPicture = (picture) => {
   bigPictureContainer.classList.remove('hidden');
 
   bigPictureImage.src = picture.url;
@@ -76,6 +76,6 @@ function showBigPicture(picture) {
   document.body.classList.add('modal-open');
 
   closeBigPhotoPopup();
-}
+};
 
 export { bigPictureContainer, showBigPicture };

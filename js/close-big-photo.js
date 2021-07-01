@@ -12,9 +12,9 @@ const keyDownEsc = (evt) => {
   }
 };
 
-function closeBigPhotoPopup() {
+const closeBigPhotoPopup = () => {
   document.addEventListener('keydown', keyDownEsc);
   bigPictureCloseButton.addEventListener('click', closePhoto);
-}
+};
 
 export { closeBigPhotoPopup };
