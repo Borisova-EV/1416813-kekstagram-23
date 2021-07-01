@@ -1,6 +1,10 @@
 import { createNewElement } from './utils.js';
 import { closeBigPhotoPopup } from './close-big-photo.js';
 
+const WIDTH_USER_AVATAR = '35';
+const HEIGHT_USER_AVATAR = '35';
+const AMOUNT_SHOWN_COMMENTS = 5;
+
 const bigPictureContainer = document.querySelector('.big-picture');
 const bigPicture = bigPictureContainer.querySelector('.big-picture__img');
 const likesCount = bigPictureContainer.querySelector('.likes-count');
@@ -18,8 +22,8 @@ const bigPictureImage = bigPicture.querySelector('img');
 const createCommentElement = () => {
   const commentUser = createNewElement('li', 'social__comment');
   const user = createNewElement('img', 'social__picture');
-  user.width = '35';
-  user.height = '35';
+  user.width = WIDTH_USER_AVATAR;
+  user.height = HEIGHT_USER_AVATAR;
   commentUser.appendChild(user);
   const textComment = createNewElement('p', 'social__text');
   commentUser.appendChild(textComment);
@@ -28,7 +32,7 @@ const createCommentElement = () => {
 
 // Создание всех видимых комментариев
 const createCommentsUser = (amount) => {
-  const commentAmount = (amount >= 5) ? 5 : amount;
+  const commentAmount = (amount >= AMOUNT_SHOWN_COMMENTS) ? AMOUNT_SHOWN_COMMENTS : amount;
 
   for (let i = 1; i <= commentAmount; i++) {
     commentsFragment.appendChild(createCommentElement());
