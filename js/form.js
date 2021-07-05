@@ -45,22 +45,13 @@ uploadPictureInput.addEventListener('change', () => openEditPopup());
 hashtagsInput.addEventListener('change', () => {
   if (!matchingPattern()) {
     hashtagsInput.setCustomValidity('Проверьте правильность написания хештегов: хештег должен начинаться с #, содержать только буквы и числа и не превышать 20 символов');
-  } else {
-    hashtagsInput.setCustomValidity('');
-  }
-
-  if (isDuplicate()) {
+  } else if (isDuplicate()) {
     hashtagsInput.setCustomValidity('Один и тот же хэш-тег не может быть использован дважды');
-  } else {
-    hashtagsInput.setCustomValidity('');
-  }
-
-  if (isTooMushHashTags()) {
+  } else if (isTooMushHashTags()) {
     hashtagsInput.setCustomValidity(`Уменьшите количество хэш-тегов на ${createHashTags().length - AMOUNT_HASH_TAGS}`);
   } else {
     hashtagsInput.setCustomValidity('');
   }
-
 });
 
 // Отмена закрытия формы при заполнении поля хеш-тегов
