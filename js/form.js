@@ -1,3 +1,5 @@
+import { isEscEvent } from './utils.js';
+
 const uploadPictureForm = document.querySelector('.img-upload__form');
 const editPicturePopup = uploadPictureForm.querySelector('.img-upload__overlay');
 const uploadPictureInput = uploadPictureForm.querySelector('#upload-file');
@@ -13,7 +15,7 @@ const closeEditPopup = () => {
 
 
 const onEditPopupEscKeyDown = (evt) => {
-  if (evt.key === 'Escape' || evt.key === 'Esc') {
+  if (isEscEvent ()) {
     evt.preventDefault();
     closeEditPopup();
   }
