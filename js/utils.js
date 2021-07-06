@@ -25,4 +25,12 @@ const createNewElement = (tagName, className) => {
 //Функция проверки нажатия клавиши Esc
 const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
-export { getRandomNumber, getRandomElementArray, checkStringLength, createNewElement, isEscEvent };
+//Функция-обработчик на нажатие клавиш
+const onDocumentKeyDown = (evt, closePopup) => {
+  if (isEscEvent(evt)) {
+    evt.preventDefault();
+    closePopup();
+  }
+};
+
+export { getRandomNumber, getRandomElementArray, checkStringLength, createNewElement, onDocumentKeyDown };

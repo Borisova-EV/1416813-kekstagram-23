@@ -1,5 +1,5 @@
 import { bigPictureContainer } from './create-big-photo.js';
-import { isEscEvent } from './utils.js';
+import { onDocumentKeyDown } from './utils.js';
 
 const bigPictureCloseButton = document.querySelector('.big-picture__cancel');
 
@@ -8,12 +8,7 @@ const closeBigPhoto = () => {
   document.body.classList.remove('modal-open');
 };
 
-const onBigPhotoPopupEscKeyDown = (evt) => {
-  if (isEscEvent(evt)) {
-    evt.preventDefault();
-    closeBigPhoto();
-  }
-};
+const onBigPhotoPopupEscKeyDown = (evt) => onDocumentKeyDown (evt, closeBigPhoto);
 
 const onBigPhotoPopupButtonClick = () => closeBigPhoto();
 
