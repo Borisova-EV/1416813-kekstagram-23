@@ -15,6 +15,7 @@ const commentsItem = commentsList.children;
 const textPhoto = bigPictureContainer.querySelector('.social__caption');
 const commentsCountContainer = bigPictureContainer.querySelector('.social__comment-count');
 const commentsLoader = bigPictureContainer.querySelector('.comments-loader');
+const countLoaderComments = commentsCountContainer.querySelector('.count-loader-comments');
 const bigPictureImage = bigPicture.querySelector('img');
 
 
@@ -32,20 +33,16 @@ const createCommentElement = () => {
 
 // Создание всех видимых комментариев
 const createCommentsUser = (amount) => {
-  const commentAmount = (amount >= AMOUNT_SHOWN_COMMENTS) ? AMOUNT_SHOWN_COMMENTS : amount;
-
-  for (let i = 1; i <= commentAmount; i++) {
+  for (let i = 1; i <= amount; i++) {
     commentsFragment.appendChild(createCommentElement());
   }
-
-  commentsList.appendChild(commentsFragment);
 };
 
 // Добавление описания комментариев
 const addDescriptionComments = (comments) => {
-
-  for (let i = 0; i < commentsItem.length; i++) {
-    const commentUser = commentsItem[i];
+  const commentLIstFragment = commentsFragment.children;
+  for (let i = 0; i < commentLIstFragment.length; i++) {
+    const commentUser = commentLIstFragment[i];
     const avatar = commentUser.querySelector('.social__picture');
     avatar.src = comments[i].avatar;
     avatar.alt = comments[i].name;
@@ -54,17 +51,27 @@ const addDescriptionComments = (comments) => {
   }
 };
 
-// Редактирование комментариев
-const editComments = (picture) => {
+//Удаление комментариев
+const removeComments = () => {
   for (let i = commentsItem.length - 1; i >= 0; i--) {
     commentsItem[i].remove();
   }
-  createCommentsUser(picture.comments.length);
+};
+
+// Добавление  комментариев
+const addComments = (picture) => {
+  const amountLoaderComments = (picture.comments.length >= AMOUNT_SHOWN_COMMENTS) ? AMOUNT_SHOWN_COMMENTS : picture.comments.length;
+
+  createCommentsUser(amountLoaderComments);
   addDescriptionComments(picture.comments);
 
-  commentsCountContainer.classList.add('hidden');
-  commentsLoader.classList.add('hidden');
+  picture.comments.splice(0, amountLoaderComments);
+
+  commentsList.appendChild(commentsFragment);
+
+  countLoaderComments.textContent = commentsItem.length;
 };
+
 
 // Показ полноэкранного изображения
 const showBigPicture = (picture) => {
@@ -75,7 +82,10 @@ const showBigPicture = (picture) => {
   commentsCount.textContent = picture.comments.length;
   textPhoto.textContent = picture.description;
 
-  editComments(picture);
+  removeComments();
+  addComments(picture);
+
+  commentsLoader.addEventListener('click', () => addComments(picture));
 
   document.body.classList.add('modal-open');
 
