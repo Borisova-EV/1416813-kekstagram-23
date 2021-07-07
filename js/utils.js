@@ -33,4 +33,7 @@ const onDocumentKeyDown = (evt, closePopup) => {
   }
 };
 
-export { getRandomNumber, getRandomElementArray, checkStringLength, createNewElement, onDocumentKeyDown };
+//Функция проверки фокусированного элемента
+const isFocusElement = (elem) => elem === document.activeElement;
+
+export { getRandomNumber, getRandomElementArray, checkStringLength, createNewElement, onDocumentKeyDown, isFocusElement };

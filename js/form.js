@@ -1,4 +1,4 @@
-import { onDocumentKeyDown } from './utils.js';
+import { onDocumentKeyDown, isFocusElement } from './utils.js';
 import { validationHashTags } from './validation-hash-tags.js';
 import { validationComments } from './validation-comments.js';
 
@@ -22,6 +22,17 @@ const onEditPopupEscKeyDown = (evt) => onDocumentKeyDown(evt, closeEditPopup);
 
 const onCloseEditPictureButtonClick = () => closeEditPopup();
 
+// Отмена закрытия формы при заполнении полей
+const removeCloseHandler = () => {
+  if (isFocusElement(hashtagsInput)) {
+    document.removeEventListener('keydown', onEditPopupEscKeyDown);
+  } else if (isFocusElement(commentsInput)) {
+    document.removeEventListener('keydown', onEditPopupEscKeyDown);
+  } else {
+    document.addEventListener('keydown', onEditPopupEscKeyDown);
+  }
+};
+
 //Функция открытия окна редактирования загружаемого фото
 const openEditPopup = () => {
   editPicturePopup.classList.remove('hidden');
@@ -29,6 +40,8 @@ const openEditPopup = () => {
 
   document.addEventListener('keydown', onEditPopupEscKeyDown);
   closeEditPictureButton.addEventListener('click', onCloseEditPictureButtonClick);
+
+  removeCloseHandler();
 };
 
 uploadPictureInput.addEventListener('change', () => openEditPopup());
@@ -37,8 +50,8 @@ uploadPictureInput.addEventListener('change', () => openEditPopup());
 
 //Поле ввода хэш-тэгов
 hashtagsInput.addEventListener('change', () => validationHashTags());
-
-// Отмена закрытия формы при заполнении поля хеш-тегов
+/*
+// Отмена закрытия формы при заполнении полей
 hashtagsInput.addEventListener('focus', () => {
   document.removeEventListener('keydown', onEditPopupEscKeyDown);
 });
@@ -46,10 +59,10 @@ hashtagsInput.addEventListener('focus', () => {
 hashtagsInput.addEventListener('blur', () => {
   document.addEventListener('keydown', onEditPopupEscKeyDown);
 });
-
+*/
 //Поле ввода комментариев
 commentsInput.addEventListener('input', () => validationComments());
-
+/*
 // Отмена закрытия формы при заполнении поля комментариев
 commentsInput.addEventListener('focus', () => {
   document.removeEventListener('keydown', onEditPopupEscKeyDown);
@@ -57,6 +70,6 @@ commentsInput.addEventListener('focus', () => {
 
 commentsInput.addEventListener('blur', () => {
   document.addEventListener('keydown', onEditPopupEscKeyDown);
-});
+});*/
 
 export { hashtagsInput, commentsInput };

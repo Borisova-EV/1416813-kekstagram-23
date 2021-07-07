@@ -18,7 +18,7 @@ const isDuplicate = () => {
   lowerCaseHashTags.sort();
   const duplicates = lowerCaseHashTags.filter((item, index) =>
     item === lowerCaseHashTags[index + 1]);
-  return duplicates.length >= 1;
+  return duplicates.length > 0;
 };
 
 // Проверка на количество хеш-тегов
