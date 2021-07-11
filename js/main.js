@@ -5,5 +5,3 @@ import './form.js';
 
 const photos = createPhotos();
 createGalleryPhotos(photos);
-
-
