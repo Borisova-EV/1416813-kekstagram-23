@@ -3,23 +3,27 @@ import { isEscEvent } from './utils.js';
 
 const bigPictureCloseButton = document.querySelector('.big-picture__cancel');
 
-const closeBigPhoto = () => {
-  bigPictureContainer.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-};
-
-const onBigPhotoPopupEscKeyDown = (evt) => {
-  if (isEscEvent(evt)) {
+const onDocumentKeydown = (evt) => {
+  if (isEscEvent) {
     evt.preventDefault();
+    // eslint-disable-next-line no-use-before-define
     closeBigPhoto();
   }
 };
 
-const onBigPhotoPopupButtonClick = () => closeBigPhoto();
+// eslint-disable-next-line no-use-before-define
+const onBigPictureCloseButtonClick = () => closeBigPhoto();
+
+function closeBigPhoto() {
+  bigPictureContainer.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onDocumentKeydown);
+  bigPictureCloseButton.removeEventListener('click', onBigPictureCloseButtonClick);
+}
 
 const closeBigPhotoPopup = () => {
-  document.addEventListener('keydown', onBigPhotoPopupEscKeyDown);
-  bigPictureCloseButton.addEventListener('click', onBigPhotoPopupButtonClick);
+  document.addEventListener('keydown', onDocumentKeydown);
+  bigPictureCloseButton.addEventListener('click', onBigPictureCloseButtonClick);
 };
 
 export { closeBigPhotoPopup };

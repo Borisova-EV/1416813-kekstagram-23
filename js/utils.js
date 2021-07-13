@@ -25,4 +25,7 @@ const createNewElement = (tagName, className) => {
 //Функция проверки нажатия клавиши Esc
 const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
-export { getRandomNumber, getRandomElementArray, checkStringLength, createNewElement, isEscEvent };
+//Функция проверки фокусированного элемента
+const isFocusElement = (elem) => elem === document.activeElement;
+
+export { getRandomNumber, getRandomElementArray, checkStringLength, createNewElement, isEscEvent, isFocusElement };
