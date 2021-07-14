@@ -79,7 +79,6 @@ const hiddenLoaderComments = () => {
 
 // Обработчик клика по кнопке "загрузить еще"
 const onCommentsLoaderButtonClick = (comments) => {
-  // eslint-disable-next-line no-use-before-define
   addAllComments(comments);
 };
 
