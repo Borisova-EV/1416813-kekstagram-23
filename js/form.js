@@ -2,6 +2,7 @@ import { isEscEvent, isFocusElement } from './utils.js';
 import { validationHashTags } from './validation-hash-tags.js';
 import { validationComments } from './validation-comments.js';
 import { decreaseScale, changeValueInputScale, changeScalePhoto, increaseScale } from './change-scale.js';
+import {changeEffectPhoto, effectInputRadioContainer, noEffectPhoto} from './change-effect.js';
 
 const uploadPictureForm = document.querySelector('.img-upload__form');
 const editPicturePopup = uploadPictureForm.querySelector('.img-upload__overlay');
@@ -38,6 +39,12 @@ const onBiggerScaleButtonClick = () => {
   changeScalePhoto();
 };
 
+const onEffectInputRadioChange = (evt) => {
+  if (evt.target.matches('input[type="radio"]')) {
+    changeEffectPhoto(evt);
+  }
+};
+
 //Функция закрытия окна редактирования загружаемого фото
 function closeEditPopup() {
   editPicturePopup.classList.add('hidden');
@@ -52,6 +59,8 @@ function closeEditPopup() {
 
   smallerScaleButton.removeEventListener('click', onSmallerScaleButtonClick);
   biggerScaleButton.removeEventListener('click', onBiggerScaleButtonClick);
+
+  effectInputRadioContainer.removeEventListener('change', onEffectInputRadioChange);
 
   document.removeEventListener('keydown', onDocumentKeydown);
   closeEditPictureButton.removeEventListener('click', onCloseEditPictureButtonClick);
@@ -70,6 +79,10 @@ const openEditPopup = () => {
   inputScaleValue.value = '100%';
   smallerScaleButton.addEventListener('click', onSmallerScaleButtonClick);
   biggerScaleButton.addEventListener('click', onBiggerScaleButtonClick);
+
+  effectInputRadioContainer.addEventListener('change', onEffectInputRadioChange);
+
+  noEffectPhoto();
 
   document.addEventListener('keydown', onDocumentKeydown);
   closeEditPictureButton.addEventListener('click', onCloseEditPictureButtonClick);

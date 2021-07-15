@@ -24,4 +24,4 @@ const increaseScale = () => {
 
 const changeValueInputScale = () => inputScaleValue.value = `${scalePercent}%`;
 
-export { decreaseScale, changeValueInputScale, changeScalePhoto, increaseScale };
+export { decreaseScale, changeValueInputScale, changeScalePhoto, increaseScale, photoPreview };
