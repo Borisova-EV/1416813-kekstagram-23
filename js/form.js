@@ -36,18 +36,12 @@ const openEditPopup = () => {
   editPicturePopup.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
+  hashtagsInput.addEventListener('change', () => validationHashTags());
+
+  commentsInput.addEventListener('input', () => validationComments());
+
   document.addEventListener('keydown', onDocumentKeydown);
   closeEditPictureButton.addEventListener('click', onCloseEditPictureButtonClick);
 };
 
-uploadPictureInput.addEventListener('change', () => openEditPopup());
-
-// Заполнение полей формы
-
-//Поле ввода хэш-тэгов
-hashtagsInput.addEventListener('change', () => validationHashTags());
-
-//Поле ввода комментариев
-commentsInput.addEventListener('input', () => validationComments());
-
-export { hashtagsInput, commentsInput };
+export { hashtagsInput, commentsInput,uploadPictureInput, openEditPopup};

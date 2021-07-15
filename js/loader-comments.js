@@ -13,10 +13,6 @@ const commentsLoaderButton = bigPictureContainer.querySelector('.comments-loader
 
 //Количество загружаемых комментариев
 let amountDownloadableComments = 0;
-//Количество загруженных комментариев
-let amountUploadedComments = 0;
-//Количество незагруженных комментариев
-let amountUnloadedComments = 0;
 
 // Создание одного комментария
 const createCommentElement = () => {
@@ -44,16 +40,15 @@ const addComments = (amount, comments) => {
   const containerElements = createCommentsUser(amount);
   const commentsList = containerElements.children;
   for (let i = 0; i < commentsList.length; i++) {
-    const indexDownloadableComments = i + amountUploadedComments;
     const avatar = commentsList[i].querySelector('.social__picture');
-    avatar.src = comments[indexDownloadableComments].avatar;
-    avatar.alt = comments[indexDownloadableComments].name;
+    avatar.src = comments[i].avatar;
+    avatar.alt = comments[i].name;
     const textComment = commentsList[i].querySelector('.social__text');
-    textComment.textContent = comments[indexDownloadableComments].message;
+    textComment.textContent = comments[i].message;
   }
   uploadedCommentsContainer.appendChild(containerElements);
-  amountUploadedComments = amountUploadedComments + amountDownloadableComments;
-  countUnloaderComments.textContent = amountUploadedComments;
+  comments.splice(0, amount);
+  countUnloaderComments.textContent = uploadedCommentsList.length;
 
 };
 
@@ -63,8 +58,6 @@ const removeComments = () => {
     uploadedCommentsList[i].remove();
   }
   amountDownloadableComments = 0;
-  amountUploadedComments = 0;
-  amountUnloadedComments = 0;
   commentsLoaderButton.classList.remove('hidden');
   commentsCountContainer.classList.remove('hidden');
 };
@@ -84,10 +77,8 @@ const onCommentsLoaderButtonClick = (comments) => {
 
 // Добавление всех комментариев
 function addAllComments(comments) {
-
-  amountUnloadedComments = comments.length - amountUploadedComments;
-  if (amountUnloadedComments <= AMOUNT_SHOWN_COMMENTS) {
-    amountDownloadableComments = amountUnloadedComments;
+  if (comments.length <= AMOUNT_SHOWN_COMMENTS) {
+    amountDownloadableComments = comments.length;
     addComments(amountDownloadableComments, comments);
     hiddenLoaderComments();
   } else {
