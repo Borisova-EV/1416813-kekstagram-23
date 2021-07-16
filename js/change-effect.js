@@ -3,17 +3,7 @@ const effectValueLevelInput = document.querySelector('.effect-level__value');
 const effectInputRadioContainer = document.querySelector('.effects__list');
 const effectLevelSlider = document.querySelector('.effect-level__slider');
 
-noUiSlider.create(effectLevelSlider, {
-  range: {
-    min: 0,
-    max: 1,
-  },
-  start: 0,
-  step: 0.1,
-  connect: 'lower',
-});
-
-const optionsSliders = [
+const OPTIONS_SLIDERS = [
   {
     title: 'chrome',
     min: 0,
@@ -50,17 +40,26 @@ const optionsSliders = [
     step: 0.1,
   },
 ];
+noUiSlider.create(effectLevelSlider, {
+  range: {
+    min: 0,
+    max: 1,
+  },
+  start: 0,
+  step: 0.1,
+  connect: 'lower',
+});
 
-const updateSlider = (rangeMin, rangeMax, stepValue) => {
+const updateSlider = (minValue, maxValue, stepValue) => {
   effectLevelSlider.noUiSlider.updateOptions({
     range: {
-      min: rangeMin,
-      max: rangeMax,
+      min: minValue,
+      max: maxValue,
     },
-    start: rangeMax,
+    start: maxValue,
     step: stepValue,
   });
-  effectLevelSlider.noUiSlider.set(rangeMax);
+  effectLevelSlider.noUiSlider.set(maxValue);
 };
 
 const changeLevelEffect = (effect) => {
@@ -98,8 +97,8 @@ const changeEffectPhoto = (evt) => {
     effectLevelSlider.classList.remove('hidden');
     photoPreview.className = '';
     photoPreview.classList.add(`effects__preview--${effect}`);
-    const options = optionsSliders.find((elem) => elem.title === effect);
-    updateSlider(options.min, options.max, options.start, options.step);
+    const options = OPTIONS_SLIDERS.find((elem) => elem.title === effect);
+    updateSlider(options.min, options.max, options.step);
     changeLevelEffect(effect);
   }
 };
