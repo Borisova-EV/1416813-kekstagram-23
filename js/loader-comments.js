@@ -70,11 +70,6 @@ const hiddenLoaderComments = () => {
   commentsLoaderButton.classList.add('hidden');
 };
 
-// Обработчик клика по кнопке "загрузить еще"
-const onCommentsLoaderButtonClick = (comments) => {
-  addAllComments(comments);
-};
-
 // Добавление всех комментариев
 function addAllComments(comments) {
   if (comments.length <= AMOUNT_SHOWN_COMMENTS) {
@@ -84,7 +79,7 @@ function addAllComments(comments) {
   } else {
     amountDownloadableComments = AMOUNT_SHOWN_COMMENTS;
     addComments(amountDownloadableComments, comments);
-    commentsLoaderButton.addEventListener('click', () => onCommentsLoaderButtonClick(comments));
+    commentsLoaderButton.addEventListener('click', () => addAllComments(comments));
   }
 }
 
