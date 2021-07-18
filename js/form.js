@@ -2,7 +2,7 @@ import { isEscEvent, isFocusElement } from './utils.js';
 import { validationHashTags } from './validation-hash-tags.js';
 import { validationComments } from './validation-comments.js';
 import { decreaseScale, changeValueInputScale, changeScalePhoto, increaseScale } from './change-scale.js';
-import {changeEffectPhoto, effectInputRadioContainer, noEffectPhoto} from './change-effect.js';
+import { changeEffectPhoto, effectInputRadioContainer, noEffectPhoto } from './change-effect.js';
 
 const uploadPictureForm = document.querySelector('.img-upload__form');
 const editPicturePopup = uploadPictureForm.querySelector('.img-upload__overlay');

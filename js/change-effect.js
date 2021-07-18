@@ -1,4 +1,5 @@
 import { photoPreview } from './change-scale.js';
+
 const effectValueLevelInput = document.querySelector('.effect-level__value');
 const effectInputRadioContainer = document.querySelector('.effects__list');
 const effectLevelSlider = document.querySelector('.effect-level__slider');
