@@ -29,6 +29,7 @@ function closeSuccessSendData() {
 
 const showSuccessSendData = () => {
   document.body.append(successPopup);
+  successPopup.classList.remove('hidden');
   closeSuccessPopupButton.addEventListener('click', onCloseSuccessPopupButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
   document.addEventListener('click', onDocumentClick);

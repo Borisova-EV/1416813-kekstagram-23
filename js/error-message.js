@@ -1,5 +1,4 @@
 import { isEscEvent } from './utils.js';
-import { closeEditPopup } from './edit-photo-popup.js';
 
 const ALERT_SHOW_TIME = 8000;
 
@@ -66,8 +65,8 @@ function closeErrorSendData() {
 }
 
 const showErrorSendData = () => {
-  closeEditPopup();
   document.body.append(errorPopup);
+  errorPopup.classList.remove('hidden');
   closeErrorPopupButton.addEventListener('click', onCloseErrorPopupButtonClick);
   document.addEventListener('keydown', onDocumentKeydown);
 
