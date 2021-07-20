@@ -1,8 +1,8 @@
-import { isEscEvent, isFocusElement } from './utils.js';
+import { isEscEvent, isFocusElement, hideElement, showElement } from './utils.js';
 import { validationHashTags } from './validation-hash-tags.js';
 import { validationComments } from './validation-comments.js';
-import { decreaseScale, changeValueInputScale, changeScalePhoto, increaseScale } from './change-scale.js';
-import { changeEffectPhoto, effectInputRadioContainer, noEffectPhoto } from './change-effect.js';
+import { decreaseScale, increaseScale } from './change-scale.js';
+import { changeEffectPhoto, effectInputRadioContainer, removeEffectPhoto } from './change-effect.js';
 
 const uploadPictureForm = document.querySelector('.img-upload__form');
 const editPicturePopup = uploadPictureForm.querySelector('.img-upload__overlay');
@@ -13,6 +13,8 @@ const commentsInput = uploadPictureForm.querySelector('.text__description');
 const smallerScaleButton = uploadPictureForm.querySelector('.scale__control--smaller');
 const biggerScaleButton = uploadPictureForm.querySelector('.scale__control--bigger');
 const inputScaleValue = uploadPictureForm.querySelector('.scale__control--value');
+
+const START_VALUE_EFFECT = '100%';
 
 const onDocumentKeydown = (evt) => {
   if (isEscEvent(evt) && !(isFocusElement(hashtagsInput)) && !(isFocusElement(commentsInput))) {
@@ -27,19 +29,11 @@ const onHashtagsInputChange = () => validationHashTags();
 
 const onCommentsInputInput = () => validationComments();
 
-const onSmallerScaleButtonClick = () => {
-  decreaseScale();
-  changeValueInputScale();
-  changeScalePhoto();
-};
+const onSmallerScaleButtonClick = () => decreaseScale();
 
-const onBiggerScaleButtonClick = () => {
-  increaseScale();
-  changeValueInputScale();
-  changeScalePhoto();
-};
+const onBiggerScaleButtonClick = () => increaseScale();
 
-const onEffectInputRadioChange = (evt) => {
+const onEffectInputRadioContainerChange = (evt) => {
   if (evt.target.matches('input[type="radio"]')) {
     changeEffectPhoto(evt);
   }
@@ -47,11 +41,11 @@ const onEffectInputRadioChange = (evt) => {
 
 //Функция закрытия окна редактирования загружаемого фото
 function closeEditPopup() {
-  editPicturePopup.classList.add('hidden');
+  hideElement(editPicturePopup);
+
   document.body.classList.remove('modal-open');
-  uploadPictureInput.value = '';
-  hashtagsInput.value = '';
-  commentsInput.value = '';
+
+  uploadPictureForm.reset();
 
   hashtagsInput.removeEventListener('change', onHashtagsInputChange);
 
@@ -60,7 +54,7 @@ function closeEditPopup() {
   smallerScaleButton.removeEventListener('click', onSmallerScaleButtonClick);
   biggerScaleButton.removeEventListener('click', onBiggerScaleButtonClick);
 
-  effectInputRadioContainer.removeEventListener('change', onEffectInputRadioChange);
+  effectInputRadioContainer.removeEventListener('change', onEffectInputRadioContainerChange);
 
   document.removeEventListener('keydown', onDocumentKeydown);
   closeEditPictureButton.removeEventListener('click', onCloseEditPictureButtonClick);
@@ -69,24 +63,26 @@ function closeEditPopup() {
 
 //Функция открытия окна редактирования загружаемого фото
 const openEditPopup = () => {
-  editPicturePopup.classList.remove('hidden');
+  showElement(editPicturePopup);
+
   document.body.classList.add('modal-open');
+
+  inputScaleValue.value = START_VALUE_EFFECT;
+
+  removeEffectPhoto();
 
   hashtagsInput.addEventListener('change', onHashtagsInputChange);
 
   commentsInput.addEventListener('input', onCommentsInputInput);
 
-  inputScaleValue.value = '100%';
   smallerScaleButton.addEventListener('click', onSmallerScaleButtonClick);
   biggerScaleButton.addEventListener('click', onBiggerScaleButtonClick);
 
-  effectInputRadioContainer.addEventListener('change', onEffectInputRadioChange);
-
-  noEffectPhoto();
+  effectInputRadioContainer.addEventListener('change', onEffectInputRadioContainerChange);
 
   document.addEventListener('keydown', onDocumentKeydown);
   closeEditPictureButton.addEventListener('click', onCloseEditPictureButtonClick);
 };
 
-export { uploadPictureInput, hashtagsInput, commentsInput, inputScaleValue, openEditPopup };
+export { uploadPictureInput, hashtagsInput, commentsInput, inputScaleValue, openEditPopup, biggerScaleButton, smallerScaleButton };
 

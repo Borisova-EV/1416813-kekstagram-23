@@ -1,8 +1,10 @@
-import { photoPreview } from './change-scale.js';
+import { hideElement, showElement } from './utils.js';
 
-const effectValueLevelInput = document.querySelector('.effect-level__value');
+const effectLevelContainer = document.querySelector('.effect-level');
+const effectValueLevelInput = effectLevelContainer.querySelector('.effect-level__value');
 const effectInputRadioContainer = document.querySelector('.effects__list');
-const effectLevelSlider = document.querySelector('.effect-level__slider');
+const effectLevelSlider = effectLevelContainer.querySelector('.effect-level__slider');
+const photoPreview = document.querySelector('img');
 
 const OPTIONS_SLIDERS = [
   {
@@ -51,41 +53,49 @@ noUiSlider.create(effectLevelSlider, {
   connect: 'lower',
 });
 
-const updateSlider = (minValue, maxValue, stepValue) => {
+const updateSlider = ({ min, max, step }) => {
   effectLevelSlider.noUiSlider.updateOptions({
     range: {
-      min: minValue,
-      max: maxValue,
+      min: min,
+      max: max,
     },
-    start: maxValue,
-    step: stepValue,
+    start: max,
+    step: step,
   });
-  effectLevelSlider.noUiSlider.set(maxValue);
+  effectLevelSlider.noUiSlider.set(max);
 };
+
+const changeValueInputEffect = (value) => effectValueLevelInput.value = value;
 
 const changeLevelEffect = (effect) => {
   effectLevelSlider.noUiSlider.on('update', (values) => {
-    effectValueLevelInput.value = values;
+    changeValueInputEffect(values);
     let nameFilter;
-    if (effect === 'chrome') {
-      nameFilter = `grayscale(${values})`;
-    } else if (effect === 'sepia') {
-      nameFilter = `sepia(${values})`;
-    } else if (effect === 'marvin') {
-      nameFilter = `invert(${values}%)`;
-    } else if (effect === 'phobos') {
-      nameFilter = `blur(${values}px)`;
-    } else if (effect === 'heat') {
-      nameFilter = `brightness(${values})`;
-    } else {
-      nameFilter = '';
+    switch (effect) {
+      case 'chrome':
+        nameFilter = `grayscale(${values})`;
+        break;
+      case 'sepia':
+        nameFilter = `sepia(${values})`;
+        break;
+      case 'marvin':
+        nameFilter = `invert(${values}%)`;
+        break;
+      case 'phobos':
+        nameFilter = `blur(${values}px)`;
+        break;
+      case 'heat':
+        nameFilter = `brightness(${values})`;
+        break;
+      default:
+        nameFilter = '';
     }
     photoPreview.style.filter = nameFilter;
   });
 };
 
-const noEffectPhoto = () => {
-  effectLevelSlider.classList.add('hidden');
+const removeEffectPhoto = () => {
+  hideElement(effectLevelContainer);
   photoPreview.style.filter = '';
   photoPreview.className = '';
 };
@@ -93,15 +103,15 @@ const noEffectPhoto = () => {
 const changeEffectPhoto = (evt) => {
   const effect = evt.target.value;
   if (effect === 'none') {
-    noEffectPhoto();
+    removeEffectPhoto();
   } else {
-    effectLevelSlider.classList.remove('hidden');
+    showElement(effectLevelContainer);
     photoPreview.className = '';
     photoPreview.classList.add(`effects__preview--${effect}`);
     const options = OPTIONS_SLIDERS.find((elem) => elem.title === effect);
-    updateSlider(options.min, options.max, options.step);
+    updateSlider(options);
     changeLevelEffect(effect);
   }
 };
 
-export { changeEffectPhoto, effectInputRadioContainer, noEffectPhoto };
+export { changeEffectPhoto, effectInputRadioContainer, removeEffectPhoto };

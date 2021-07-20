@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define */
+import { showElement } from './utils.js';
 import { removeComments, loadingComments } from './loader-comments.js';
 import { closeBigPhotoPopup } from './close-big-photo.js';
 
@@ -11,7 +11,7 @@ const bigPictureImage = bigPicture.querySelector('img');
 
 // Показ полноэкранного изображения
 const showBigPicture = (picture) => {
-  bigPictureContainer.classList.remove('hidden');
+  showElement(bigPictureContainer);
 
   bigPictureImage.src = picture.url;
   likesCount.textContent = picture.likes;

@@ -1,5 +1,5 @@
-import { bigPictureContainer } from './create-big-photo.js';
-import { isEscEvent } from './utils.js';
+import { bigPictureContainer } from './show-big-picture.js';
+import { isEscEvent, hideElement } from './utils.js';
 
 const bigPictureCloseButton = document.querySelector('.big-picture__cancel');
 
@@ -13,7 +13,7 @@ const onDocumentKeydown = (evt) => {
 const onBigPictureCloseButtonClick = () => closeBigPhoto();
 
 function closeBigPhoto() {
-  bigPictureContainer.classList.add('hidden');
+  hideElement(bigPictureContainer);
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
   bigPictureCloseButton.removeEventListener('click', onBigPictureCloseButtonClick);

@@ -3,7 +3,7 @@ import { hashtagsInput } from './form.js';
 const AMOUNT_HASH_TAGS = 5;
 
 // запись хештегов в массив
-const createHashTags = () => hashtagsInput.value.split(' ');
+const createHashTags = () => hashtagsInput.value.trim().split(' ');
 
 
 //Проверка написания хештегов по регулярному выражению

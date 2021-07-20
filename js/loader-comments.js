@@ -1,4 +1,4 @@
-import { createNewElement } from './utils.js';
+import { createNewElement, hideElement, showElement, disableButton, activateButton } from './utils.js';
 
 const WIDTH_USER_AVATAR = '35';
 const HEIGHT_USER_AVATAR = '35';
@@ -8,11 +8,11 @@ const bigPictureContainer = document.querySelector('.big-picture');
 const uploadedCommentsContainer = bigPictureContainer.querySelector('.social__comments');
 const uploadedCommentsList = uploadedCommentsContainer.children;
 const commentsCountContainer = bigPictureContainer.querySelector('.social__comment-count');
-const countUnloaderComments = commentsCountContainer.querySelector('.count-loader-comments');
+const countUnloadedComments = commentsCountContainer.querySelector('.social__comment-count--loaded');
 const commentsLoaderButton = bigPictureContainer.querySelector('.comments-loader');
 
 //Количество загружаемых комментариев
-let amountDownloadableComments = 0;
+let count = 0;
 
 // Создание одного комментария
 const createCommentElement = () => {
@@ -27,18 +27,17 @@ const createCommentElement = () => {
 };
 
 // Создание всех видимых комментариев
-const createCommentsUser = (amount) => {
+const createUserComments = (amount) => {
   const commentsFragment = document.createDocumentFragment();
-  for (let i = 1; i <= amount; i++) {
+  for (let i = 0; i < amount; i++) {
     commentsFragment.appendChild(createCommentElement());
   }
   return commentsFragment;
 };
 
-// Добавление описания комментариев
-const addComments = (amount, comments) => {
-  const containerElements = createCommentsUser(amount);
-  const commentsList = containerElements.children;
+const fillComments = (amount, comments) => {
+  const containerOfElements = createUserComments(amount);
+  const commentsList = containerOfElements.children;
   for (let i = 0; i < commentsList.length; i++) {
     const avatar = commentsList[i].querySelector('.social__picture');
     avatar.src = comments[i].avatar;
@@ -46,50 +45,53 @@ const addComments = (amount, comments) => {
     const textComment = commentsList[i].querySelector('.social__text');
     textComment.textContent = comments[i].message;
   }
-  uploadedCommentsContainer.appendChild(containerElements);
+  return containerOfElements;
+};
+
+
+const addComments = (amount, comments) => {
+  uploadedCommentsContainer.appendChild(fillComments(amount, comments));
   comments.splice(0, amount);
-  countUnloaderComments.textContent = uploadedCommentsList.length;
+  countUnloadedComments.textContent = uploadedCommentsList.length;
 
 };
 
 //Удаление комментариев
 const removeComments = () => {
-  for (let i = uploadedCommentsList.length - 1; i >= 0; i--) {
+  let i = uploadedCommentsList.length - 1;
+  while (i >= 0) {
     uploadedCommentsList[i].remove();
+    i--;
   }
-  amountDownloadableComments = 0;
-  commentsLoaderButton.classList.remove('hidden');
-  commentsCountContainer.classList.remove('hidden');
+  count = 0;
+  activateButton(commentsLoaderButton);
+  showElement(commentsCountContainer);
 };
 
 // //Проверка наличия комментариев
-const haveComments = (comments) => comments.length === 0;
-
-//Убираем дальнейшую загрузку комментариев
-const hiddenLoaderComments = () => {
-  commentsLoaderButton.classList.add('hidden');
-};
+const haveComments = (comments) => comments.length > 0;
 
 // Добавление всех комментариев
-function addAllComments(comments) {
+const addAllComments = (comments) => {
   if (comments.length <= AMOUNT_SHOWN_COMMENTS) {
-    amountDownloadableComments = comments.length;
-    addComments(amountDownloadableComments, comments);
-    hiddenLoaderComments();
+    count = comments.length;
+    addComments(count, comments);
+    disableButton(commentsLoaderButton);
   } else {
-    amountDownloadableComments = AMOUNT_SHOWN_COMMENTS;
-    addComments(amountDownloadableComments, comments);
+    count = AMOUNT_SHOWN_COMMENTS;
+    addComments(count, comments);
     commentsLoaderButton.addEventListener('click', () => addAllComments(comments));
   }
-}
+};
 
 // Итоговая функция
 const loadingComments = (comments) => {
   if (haveComments(comments)) {
-    commentsLoaderButton.classList.add('hidden');
-    commentsCountContainer.classList.add('hidden');
+    const commentsCopy = comments.slice();
+    addAllComments(commentsCopy);
   } else {
-    addAllComments(comments);
+    disableButton(commentsLoaderButton);
+    hideElement(commentsCountContainer);
   }
 };
 
