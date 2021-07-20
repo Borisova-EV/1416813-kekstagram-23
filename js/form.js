@@ -12,7 +12,7 @@ const hashtagsInput = uploadPictureForm.querySelector('.text__hashtags');
 const commentsInput = uploadPictureForm.querySelector('.text__description');
 const smallerScaleButton = uploadPictureForm.querySelector('.scale__control--smaller');
 const biggerScaleButton = uploadPictureForm.querySelector('.scale__control--bigger');
-const inputScaleValue = uploadPictureForm.querySelector('.scale__control--value');
+const inputScale = uploadPictureForm.querySelector('.scale__control--value');
 
 const START_VALUE_EFFECT = '100%';
 
@@ -35,7 +35,7 @@ const onBiggerScaleButtonClick = () => increaseScale();
 
 const onEffectInputRadioContainerChange = (evt) => {
   if (evt.target.matches('input[type="radio"]')) {
-    changeEffectPhoto(evt);
+    changeEffectPhoto(evt.target.value);
   }
 };
 
@@ -67,7 +67,7 @@ const openEditPopup = () => {
 
   document.body.classList.add('modal-open');
 
-  inputScaleValue.value = START_VALUE_EFFECT;
+  inputScale.value = START_VALUE_EFFECT;
 
   removeEffectPhoto();
 
@@ -84,5 +84,5 @@ const openEditPopup = () => {
   closeEditPictureButton.addEventListener('click', onCloseEditPictureButtonClick);
 };
 
-export { uploadPictureInput, hashtagsInput, commentsInput, inputScaleValue, openEditPopup, biggerScaleButton, smallerScaleButton };
+export { uploadPictureInput, hashtagsInput, commentsInput, inputScale, openEditPopup, biggerScaleButton, smallerScaleButton };
 

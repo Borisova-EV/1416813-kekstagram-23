@@ -1,4 +1,4 @@
-import { inputScaleValue, smallerScaleButton, biggerScaleButton } from './form.js';
+import { inputScale, smallerScaleButton, biggerScaleButton } from './form.js';
 import { disableButton } from './utils.js';
 
 const Scale = {
@@ -33,7 +33,7 @@ const increaseValueScale = () => {
   }
 };
 
-const changeValueInputScale = () => inputScaleValue.value = `${scalePercent}%`;
+const changeValueInputScale = () => inputScale.value = `${scalePercent}%`;
 
 const increaseScale = () => {
   increaseValueScale();

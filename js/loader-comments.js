@@ -8,7 +8,7 @@ const bigPictureContainer = document.querySelector('.big-picture');
 const uploadedCommentsContainer = bigPictureContainer.querySelector('.social__comments');
 const uploadedCommentsList = uploadedCommentsContainer.children;
 const commentsCountContainer = bigPictureContainer.querySelector('.social__comment-count');
-const countUnloadedComments = commentsCountContainer.querySelector('.social__comment-count--loaded');
+const countUnloadedComments = commentsCountContainer.querySelector('.social__loaded-comment-count');
 const commentsLoaderButton = bigPictureContainer.querySelector('.comments-loader');
 
 //Количество загружаемых комментариев
