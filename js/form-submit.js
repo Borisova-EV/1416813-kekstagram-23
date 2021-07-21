@@ -1,4 +1,4 @@
-import { showErrorSendData } from './error-message.js';
+import { showErrorSendData } from './error-messages.js';
 import { showSuccessSendData } from './success-message.js';
 import { sendData } from './api.js';
 import { closeEditPopup, uploadPictureForm } from './edit-photo-popup.js';

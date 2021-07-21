@@ -52,7 +52,7 @@ const onDocumentKeydown = (evt) => {
 };
 
 const onDocumentClick = (evt) => {
-  if (evt.target !== errorContainer) {
+  if (evt.target !== errorContainer && !errorContainer.contains(evt.target)) {
     closeErrorSendData();
   }
 };
