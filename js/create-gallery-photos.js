@@ -1,5 +1,6 @@
 import { showBigPicture } from './show-big-picture.js';
 
+
 // Блок для добавленных фото
 const picturesContainer = document.querySelector('.pictures');
 // Шаблон добавленных фото
@@ -23,4 +24,4 @@ const createGalleryPhotos = (photos) => {
   picturesContainer.appendChild(galleryPhotosFragment);
 };
 
-export { createGalleryPhotos };
+export {picturesContainer, createGalleryPhotos };
