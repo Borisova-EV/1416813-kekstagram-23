@@ -1,4 +1,4 @@
-import { showBigPicture } from './create-big-photo.js';
+import { showBigPicture } from './show-big-picture.js';
 
 // Блок для добавленных фото
 const picturesContainer = document.querySelector('.pictures');
