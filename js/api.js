@@ -1,13 +1,11 @@
-import {changeFilter} from './change-filter.js';
 const SERVER = 'https://23.javascript.pages.academy/kekstagram';
-
 
 const getData = (onSuccess, onFail) => {
   fetch(`${SERVER}/data`)
     .then((response) => response.json())
     .then((data) => {
       onSuccess(data);
-      changeFilter(data);
+
     })
     .catch(() => {
       onFail();
