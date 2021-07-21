@@ -1,4 +1,4 @@
-import { hashtagsInput } from './form.js';
+import { hashtagsInput } from './edit-photo-popup.js';
 
 const AMOUNT_HASH_TAGS = 5;
 
@@ -27,12 +27,16 @@ const isTooMushHashTags = () => createHashTags().length > AMOUNT_HASH_TAGS;
 //Валидация поля для заполнения Хештегов
 const validationHashTags = () => {
   if (!matchingPattern()) {
+    hashtagsInput.style.border = '5px solid red';
     hashtagsInput.setCustomValidity('Проверьте правильность написания хештегов: хештег должен начинаться с #, содержать только буквы и числа и не превышать 20 символов');
   } else if (isDuplicate()) {
+    hashtagsInput.style.border = '5px solid red';
     hashtagsInput.setCustomValidity('Один и тот же хэш-тег не может быть использован дважды');
   } else if (isTooMushHashTags()) {
+    hashtagsInput.style.border = '5px solid red';
     hashtagsInput.setCustomValidity(`Уменьшите количество хэш-тегов на ${createHashTags().length - AMOUNT_HASH_TAGS}`);
   } else {
+    hashtagsInput.style.border = '';
     hashtagsInput.setCustomValidity('');
   }
 };

@@ -1,4 +1,4 @@
-import { inputScale, smallerScaleButton, biggerScaleButton } from './form.js';
+import { inputScale, smallerScaleButton, biggerScaleButton } from './edit-photo-popup.js';
 import { disableButton } from './utils.js';
 
 const Scale = {

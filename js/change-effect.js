@@ -100,8 +100,8 @@ const removeEffectPhoto = () => {
   photoPreview.className = '';
 };
 
-const changeEffectPhoto = (evt) => {
-  const effect = evt.target.value;
+const changeEffectPhoto = (value) => {
+  const effect = value;
   if (effect === 'none') {
     removeEffectPhoto();
   } else {

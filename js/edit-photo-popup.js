@@ -3,6 +3,7 @@ import { validationHashTags } from './validation-hash-tags.js';
 import { validationComments } from './validation-comments.js';
 import { decreaseScale, increaseScale } from './change-scale.js';
 import { changeEffectPhoto, effectInputRadioContainer, removeEffectPhoto } from './change-effect.js';
+import { editPhotoFormSubmit } from './form-submit.js';
 
 const uploadPictureForm = document.querySelector('.img-upload__form');
 const editPicturePopup = uploadPictureForm.querySelector('.img-upload__overlay');
@@ -80,9 +81,11 @@ const openEditPopup = () => {
 
   effectInputRadioContainer.addEventListener('change', onEffectInputRadioContainerChange);
 
+  editPhotoFormSubmit();
+
   document.addEventListener('keydown', onDocumentKeydown);
   closeEditPictureButton.addEventListener('click', onCloseEditPictureButtonClick);
 };
 
-export { uploadPictureInput, hashtagsInput, commentsInput, inputScale, openEditPopup, biggerScaleButton, smallerScaleButton };
+export { uploadPictureForm, uploadPictureInput, commentsInput, hashtagsInput, closeEditPopup, openEditPopup, inputScale, biggerScaleButton, smallerScaleButton };
 

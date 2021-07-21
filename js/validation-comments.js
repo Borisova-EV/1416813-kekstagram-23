@@ -1,5 +1,5 @@
 import { checkStringLength } from './utils.js';
-import { commentsInput } from './form.js';
+import { commentsInput } from './edit-photo-popup.js';
 
 const LENGTH_COMMENTS = 140;
 
@@ -13,8 +13,10 @@ const isInvalidLengthComments = () => {
 const validationComments = () => {
   if (isInvalidLengthComments()) {
     commentsInput.setCustomValidity(`Уменьшите длину комментария на ${commentsInput.value.length - LENGTH_COMMENTS} симв.`);
+    commentsInput.style.border = '5px solid red';
   } else {
     commentsInput.setCustomValidity('');
+    commentsInput.style.border = '';
   }
 };
 
