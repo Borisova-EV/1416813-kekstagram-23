@@ -1,9 +1,6 @@
 // Импорт модулей
-import { createPhotos } from './create-photos.js';
 import { createGalleryPhotos } from './create-gallery-photos.js';
-import { uploadPictureInput, openEditPopup } from './form.js';
+import { getData } from './api.js';
+import { showAlert } from './utils.js';
 
-const photos = createPhotos();
-createGalleryPhotos(photos);
-
-uploadPictureInput.addEventListener('change', () => openEditPopup());
+getData(createGalleryPhotos, showAlert);
