@@ -3,8 +3,13 @@ const SERVER = 'https://23.javascript.pages.academy/kekstagram';
 const getData = (onSuccess, onFail) => {
   fetch(`${SERVER}/data`)
     .then((response) => response.json())
-    .then((data) => onSuccess(data))
-    .catch(() => onFail());
+    .then((data) => {
+      onSuccess(data);
+
+    })
+    .catch(() => {
+      onFail();
+    });
 };
 
 const sendData = (onSuccess, onFail, body, onFinally) => {
