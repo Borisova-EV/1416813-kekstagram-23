@@ -9,10 +9,10 @@ const errorContainer = errorPopup.querySelector('.error__inner');
 
 const showErrorGetData = () => {
   const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = 100;
+  alertContainer.style.zIndex = '100';
   alertContainer.style.position = 'fixed';
-  alertContainer.style.top = 0;
-  alertContainer.style.left = 0;
+  alertContainer.style.top = '0';
+  alertContainer.style.left = '0';
   alertContainer.style.width = '100%';
   alertContainer.style.height = '100%';
   alertContainer.style.fontSize = '20px';

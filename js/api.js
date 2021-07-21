@@ -1,17 +1,14 @@
-const Url = {
-  SERVER: ' https://23.javascript.pages.academy/kekstagram ',
-  DATA: 'https://23.javascript.pages.academy/kekstagram/data',
-};
+const SERVER = 'https://23.javascript.pages.academy/kekstagram';
 
 const getData = (onSuccess, onFail) => {
-  fetch(Url.DATA)
+  fetch(`${SERVER}/data`)
     .then((response) => response.json())
-    .then((photos) => onSuccess(photos))
+    .then((data) => onSuccess(data))
     .catch(() => onFail());
 };
 
 const sendData = (onSuccess, onFail, body, onFinally) => {
-  fetch(Url.SERVER,
+  fetch(SERVER,
     {
       method: 'POST',
       body: body,
