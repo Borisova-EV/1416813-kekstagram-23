@@ -10,4 +10,22 @@ const getData = (onSuccess, onFail) => {
     .catch(() => onFail());
 };
 
-export { getData };
+const sendData = (onSuccess, onFail, body, onFinally) => {
+  fetch(Url.SERVER,
+    {
+      method: 'POST',
+      body: body,
+
+    })
+    .then((response) => {
+      if (response.ok) {
+        onSuccess();
+      } else {
+        onFail();
+      }
+    })
+    .catch(() => onFail())
+    .finally(() => onFinally());
+};
+
+export { getData, sendData };

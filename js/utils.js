@@ -32,7 +32,6 @@ const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 //Функция проверки фокусированного элемента
 const isFocusElement = (elem) => elem === document.activeElement;
 
-
 const hideElement = (elem) => elem.classList.add(HIDING_CLASS);
 
 const showElement = (elem) => elem.classList.remove(HIDING_CLASS);
