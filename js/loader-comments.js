@@ -15,45 +15,33 @@ const commentsLoaderButton = bigPictureContainer.querySelector('.comments-loader
 let count = 0;
 
 // Создание одного комментария
-const createCommentElement = () => {
+const createCommentElement = (comment) => {
   const commentUser = createNewElement('li', 'social__comment');
   const user = createNewElement('img', 'social__picture');
   user.width = WIDTH_USER_AVATAR;
   user.height = HEIGHT_USER_AVATAR;
+  user.src = comment.avatar;
+  user.alt = comment.name;
   commentUser.appendChild(user);
   const textComment = createNewElement('p', 'social__text');
+  textComment.textContent = comment.message;
   commentUser.appendChild(textComment);
   return commentUser;
 };
 
 // Создание всех видимых комментариев
-const createUserComments = (amount) => {
+const createUserComments = (amount, comments) => {
   const commentsFragment = document.createDocumentFragment();
   for (let i = 0; i < amount; i++) {
-    commentsFragment.appendChild(createCommentElement());
+    commentsFragment.appendChild(createCommentElement(comments[i]));
   }
   return commentsFragment;
 };
 
-const fillComments = (amount, comments) => {
-  const containerOfElements = createUserComments(amount);
-  const commentsList = containerOfElements.children;
-  for (let i = 0; i < commentsList.length; i++) {
-    const avatar = commentsList[i].querySelector('.social__picture');
-    avatar.src = comments[i].avatar;
-    avatar.alt = comments[i].name;
-    const textComment = commentsList[i].querySelector('.social__text');
-    textComment.textContent = comments[i].message;
-  }
-  return containerOfElements;
-};
-
-
 const addComments = (amount, comments) => {
-  uploadedCommentsContainer.appendChild(fillComments(amount, comments));
+  uploadedCommentsContainer.appendChild(createUserComments(amount, comments));
   comments.splice(0, amount);
   countUnloadedComments.textContent = uploadedCommentsList.length;
-
 };
 
 //Удаление комментариев
