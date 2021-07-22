@@ -6,6 +6,38 @@ const effectInputRadioContainer = document.querySelector('.effects__list');
 const effectLevelSlider = effectLevelContainer.querySelector('.effect-level__slider');
 const photoPreview = document.querySelector('img');
 
+const defaultOptions = {
+  min: 0,
+  max: 1,
+  start: 1,
+  step: 0.1,
+  connect: 'lower',
+};
+
+const styles = [
+  {
+    title: 'chrome',
+    style: 'grayscale',
+    units: '',
+  }, {
+    title: 'sepia',
+    style: 'sepia',
+    units: '',
+  }, {
+    title: 'marvin',
+    style: 'invert',
+    units: '%',
+  }, {
+    title: 'phobos',
+    style: 'blur',
+    units: 'px',
+  }, {
+    title: 'heat',
+    style: 'brightness',
+    units: '',
+  },
+];
+
 const OPTIONS_SLIDERS = [
   {
     title: 'chrome',
@@ -43,14 +75,15 @@ const OPTIONS_SLIDERS = [
     step: 0.1,
   },
 ];
+
 noUiSlider.create(effectLevelSlider, {
   range: {
-    min: 0,
-    max: 1,
+    min: defaultOptions.min,
+    max: defaultOptions.max,
   },
-  start: 0,
-  step: 0.1,
-  connect: 'lower',
+  start: defaultOptions.start,
+  step: defaultOptions.step,
+  connect: defaultOptions.connect,
 });
 
 const updateSlider = ({ min, max, step }) => {
@@ -67,30 +100,12 @@ const updateSlider = ({ min, max, step }) => {
 
 const changeValueInputEffect = (value) => effectValueLevelInput.value = value;
 
-const changeLevelEffect = (effect) => {
+const changeLevelEffect = ({ style, units }) => {
   effectLevelSlider.noUiSlider.on('update', (values) => {
     changeValueInputEffect(values);
-    let nameFilter;
-    switch (effect) {
-      case 'chrome':
-        nameFilter = `grayscale(${values})`;
-        break;
-      case 'sepia':
-        nameFilter = `sepia(${values})`;
-        break;
-      case 'marvin':
-        nameFilter = `invert(${values}%)`;
-        break;
-      case 'phobos':
-        nameFilter = `blur(${values}px)`;
-        break;
-      case 'heat':
-        nameFilter = `brightness(${values})`;
-        break;
-      default:
-        nameFilter = '';
-    }
-    photoPreview.style.filter = nameFilter;
+    const styleFilter = style;
+    const filterUnit = units;
+    photoPreview.style.filter = `${styleFilter}(${values}${filterUnit})`;
   });
 };
 
@@ -110,7 +125,8 @@ const changeEffectPhoto = (value) => {
     photoPreview.classList.add(`effects__preview--${effect}`);
     const options = OPTIONS_SLIDERS.find((elem) => elem.title === effect);
     updateSlider(options);
-    changeLevelEffect(effect);
+    const style = styles.find((elem) => elem.title === effect);
+    changeLevelEffect(style);
   }
 };
 

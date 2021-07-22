@@ -5,6 +5,8 @@ import { decreaseScale, increaseScale } from './change-scale.js';
 import { changeEffectPhoto, effectInputRadioContainer, removeEffectPhoto } from './change-effect.js';
 import { editPhotoFormSubmit } from './form-submit.js';
 
+const START_VALUE_EFFECT = '100%';
+
 const uploadPictureForm = document.querySelector('.img-upload__form');
 const editPicturePopup = uploadPictureForm.querySelector('.img-upload__overlay');
 const uploadPictureInput = uploadPictureForm.querySelector('#upload-file');
@@ -14,8 +16,6 @@ const commentsInput = uploadPictureForm.querySelector('.text__description');
 const smallerScaleButton = uploadPictureForm.querySelector('.scale__control--smaller');
 const biggerScaleButton = uploadPictureForm.querySelector('.scale__control--bigger');
 const inputScale = uploadPictureForm.querySelector('.scale__control--value');
-
-const START_VALUE_EFFECT = '100%';
 
 const onDocumentKeydown = (evt) => {
   if (isEscEvent(evt) && !(isFocusElement(hashtagsInput)) && !(isFocusElement(commentsInput))) {
