@@ -33,12 +33,13 @@ const removePhotos = () => {
 };
 
 const useFilter = (evt, data) => {
-  if (evt.target.matches('#filter-random')) {
-    createGalleryPhotos(createRandomPhotos(data));
-  } else if (evt.target.matches('#filter-discussed')) {
-    createGalleryPhotos(createSortByCommentsPhotos(data));
-  } else {
-    createGalleryPhotos(data);
+  switch (evt.target.id) {
+    case 'filter-random': createGalleryPhotos(createRandomPhotos(data));
+      break;
+    case 'filter-discussed': createGalleryPhotos(createSortByCommentsPhotos(data));
+      break;
+    case 'filter-default': createGalleryPhotos(data);
+      break;
   }
 };
 
@@ -48,8 +49,8 @@ const changeFilter = (data) => {
   filterForm.addEventListener('click', (evt) => {
     filterButtons.forEach((elem) => elem.classList.remove('img-filters__button--active'));
     evt.target.classList.add('img-filters__button--active');
-    debounce( removePhotos(), TIMEOUT_DELAY);
-    debounce( useFilter(evt, data), TIMEOUT_DELAY);
+    debounce(removePhotos(), TIMEOUT_DELAY);
+    debounce(useFilter(evt, data), TIMEOUT_DELAY);
   });
 };
 
