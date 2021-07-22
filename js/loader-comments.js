@@ -46,11 +46,8 @@ const addComments = (amount, comments) => {
 
 //Удаление комментариев
 const removeComments = () => {
-  let i = uploadedCommentsList.length - 1;
-  while (i >= 0) {
-    uploadedCommentsList[i].remove();
-    i--;
-  }
+  uploadedCommentsContainer.innerHTML = '';
+
   count = 0;
   activateButton(commentsLoaderButton);
   showElement(commentsCountContainer);
