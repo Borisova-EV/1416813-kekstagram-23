@@ -11,13 +11,11 @@ const isInvalidLengthComments = () => {
 
 //Валидация поля для заполнения комментариев
 const validationComments = () => {
-  if (isInvalidLengthComments()) {
-    commentsInput.setCustomValidity(`Уменьшите длину комментария на ${commentsInput.value.length - LENGTH_COMMENTS} симв.`);
-    commentsInput.style.border = '5px solid red';
-  } else {
-    commentsInput.setCustomValidity('');
-    commentsInput.style.border = '';
-  }
+  const message = (isInvalidLengthComments()) ? `Уменьшите длину комментария на ${commentsInput.value.length - LENGTH_COMMENTS} симв.` : '';
+  const border = (isInvalidLengthComments()) ? '5px solid red' : '';
+
+  commentsInput.setCustomValidity(message);
+  commentsInput.style.border = border;
 };
 
 export { validationComments };

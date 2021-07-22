@@ -26,19 +26,24 @@ const isTooMushHashTags = () => createHashTags().length > AMOUNT_HASH_TAGS;
 
 //Валидация поля для заполнения Хештегов
 const validationHashTags = () => {
+  let border = '';
+  let message = '';
+
   if (!matchingPattern()) {
-    hashtagsInput.style.border = '5px solid red';
-    hashtagsInput.setCustomValidity('Проверьте правильность написания хештегов: хештег должен начинаться с #, содержать только буквы и числа и не превышать 20 символов');
+    border = '5px solid red';
+    message = 'Проверьте правильность написания хештегов: хештег должен начинаться с #, содержать только буквы и числа и не превышать 20 символов';
   } else if (isDuplicate()) {
-    hashtagsInput.style.border = '5px solid red';
-    hashtagsInput.setCustomValidity('Один и тот же хэш-тег не может быть использован дважды');
+    border = '5px solid red';
+    message = 'Один и тот же хэш-тег не может быть использован дважды';
   } else if (isTooMushHashTags()) {
-    hashtagsInput.style.border = '5px solid red';
-    hashtagsInput.setCustomValidity(`Уменьшите количество хэш-тегов на ${createHashTags().length - AMOUNT_HASH_TAGS}`);
+    border = '5px solid red';
+    message = `Уменьшите количество хэш-тегов на ${createHashTags().length - AMOUNT_HASH_TAGS}`;
   } else {
-    hashtagsInput.style.border = '';
-    hashtagsInput.setCustomValidity('');
+    border = '';
+    message = '';
   }
+  hashtagsInput.style.border = border;
+  hashtagsInput.setCustomValidity(message);
 };
 
 export { validationHashTags };
