@@ -45,7 +45,7 @@ const showErrorGetData = () => {
 const onCloseErrorPopupButtonClick = () => closeErrorSendData();
 
 const onDocumentKeydown = (evt) => {
-  if (isEscEvent) {
+  if (isEscEvent(evt)) {
     evt.preventDefault();
     closeErrorSendData();
   }

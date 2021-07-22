@@ -4,7 +4,7 @@ import { isEscEvent, hideElement } from './utils.js';
 const bigPictureCloseButton = document.querySelector('.big-picture__cancel');
 
 const onDocumentKeydown = (evt) => {
-  if (isEscEvent) {
+  if (isEscEvent(evt)) {
     evt.preventDefault();
     closeBigPhoto();
   }
