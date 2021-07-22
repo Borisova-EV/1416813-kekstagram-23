@@ -19,6 +19,7 @@ const showBigPicture = (picture) => {
   textPhoto.textContent = picture.description;
 
   removeComments();
+
   loadingComments(picture.comments);
 
   document.body.classList.add('modal-open');

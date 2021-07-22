@@ -1,4 +1,4 @@
-import { createNewElement, hideElement, showElement, disableButton, activateButton } from './utils.js';
+import { createNewElement, hideElement, showElement, activateButton } from './utils.js';
 
 const WIDTH_USER_AVATAR = '35';
 const HEIGHT_USER_AVATAR = '35';
@@ -31,17 +31,21 @@ const createCommentElement = (comment) => {
 
 // Создание всех видимых комментариев
 const createUserComments = (amount, comments) => {
+
   const commentsFragment = document.createDocumentFragment();
+
   for (let i = 0; i < amount; i++) {
     commentsFragment.appendChild(createCommentElement(comments[i]));
+
   }
   return commentsFragment;
 };
 
 const addComments = (amount, comments) => {
   uploadedCommentsContainer.appendChild(createUserComments(amount, comments));
-  comments.splice(0, amount);
+
   countUnloadedComments.textContent = uploadedCommentsList.length;
+  comments.splice(0, amount);
 };
 
 //Удаление комментариев
@@ -57,27 +61,33 @@ const removeComments = () => {
 const haveComments = (comments) => comments.length > 0;
 
 // Добавление всех комментариев
-const addAllComments = (comments) => {
+function addAllComments(comments) {
+
   if (comments.length <= AMOUNT_SHOWN_COMMENTS) {
     count = comments.length;
+
     addComments(count, comments);
-    disableButton(commentsLoaderButton);
+
+    hideElement(commentsLoaderButton);
   } else {
     count = AMOUNT_SHOWN_COMMENTS;
+
     addComments(count, comments);
-    commentsLoaderButton.addEventListener('click', () => addAllComments(comments));
+
+    commentsLoaderButton.addEventListener('click', () => addAllComments(comments), { once: true });
   }
-};
+}
 
 // Итоговая функция
 const loadingComments = (comments) => {
   if (haveComments(comments)) {
+    showElement(commentsLoaderButton);
     const commentsCopy = comments.slice();
     addAllComments(commentsCopy);
   } else {
-    disableButton(commentsLoaderButton);
+    hideElement(commentsLoaderButton);
     hideElement(commentsCountContainer);
   }
 };
 
-export { removeComments, loadingComments };
+export { removeComments, loadingComments, commentsLoaderButton, addAllComments };
