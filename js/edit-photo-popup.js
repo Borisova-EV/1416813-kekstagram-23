@@ -4,6 +4,7 @@ import { validationComments } from './validation-comments.js';
 import { decreaseScale, increaseScale } from './change-scale.js';
 import { changeEffectPhoto, effectInputRadioContainer, removeEffectPhoto } from './change-effect.js';
 import { editPhotoFormSubmit } from './form-submit.js';
+import { photoPreviewContainer } from './show-preview-unload-photo.js';
 
 const START_VALUE_EFFECT = '100%';
 
@@ -47,6 +48,8 @@ function closeEditPopup() {
   document.body.classList.remove('modal-open');
 
   uploadPictureForm.reset();
+
+  photoPreviewContainer.style = '';
 
   hashtagsInput.removeEventListener('change', onHashtagsInputChange);
 

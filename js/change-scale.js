@@ -1,14 +1,12 @@
 import { inputScale, smallerScaleButton, biggerScaleButton } from './edit-photo-popup.js';
 import { disableButton } from './utils.js';
+import { photoPreviewContainer } from './show-preview-unload-photo.js';
 
 const Scale = {
   MIN_VALUE: 25,
   MAX_VALUE: 100,
   STEP_CHANGE: 25,
 };
-
-const photoPreviewContainer = document.querySelector('.img-upload__preview');
-
 
 let scalePercent = Scale.MAX_VALUE;
 
