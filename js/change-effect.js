@@ -1,11 +1,6 @@
 import { hideElement, showElement } from './utils.js';
 import {photoPreview} from './show-preview-unload-photo.js';
 
-const effectLevelContainer = document.querySelector('.effect-level');
-const effectValueLevelInput = effectLevelContainer.querySelector('.effect-level__value');
-const effectInputRadioContainer = document.querySelector('.effects__list');
-const effectLevelSlider = effectLevelContainer.querySelector('.effect-level__slider');
-
 const defaultOptions = {
   min: 0,
   max: 1,
@@ -75,6 +70,11 @@ const OPTIONS_SLIDERS = [
     step: 0.1,
   },
 ];
+
+const effectLevelContainer = document.querySelector('.effect-level');
+const effectValueLevelInput = effectLevelContainer.querySelector('.effect-level__value');
+const effectInputRadioContainer = document.querySelector('.effects__list');
+const effectLevelSlider = effectLevelContainer.querySelector('.effect-level__slider');
 
 noUiSlider.create(effectLevelSlider, {
   range: {

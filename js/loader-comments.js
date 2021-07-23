@@ -13,6 +13,7 @@ const commentsLoaderButton = bigPictureContainer.querySelector('.comments-loader
 
 //Количество загружаемых комментариев
 let count = 0;
+let array = [];
 
 // Создание одного комментария
 const createCommentElement = (comment) => {
@@ -60,21 +61,24 @@ const removeComments = () => {
 // //Проверка наличия комментариев
 const haveComments = (comments) => comments.length > 0;
 
+const onCommentsLoaderButtonClick = () => addAllComments(array);
+
 // Добавление всех комментариев
 function addAllComments(comments) {
-
   if (comments.length <= AMOUNT_SHOWN_COMMENTS) {
     count = comments.length;
 
     addComments(count, comments);
 
     hideElement(commentsLoaderButton);
+
+    commentsLoaderButton.removeEventListener('click', onCommentsLoaderButtonClick);
   } else {
     count = AMOUNT_SHOWN_COMMENTS;
 
     addComments(count, comments);
 
-    commentsLoaderButton.addEventListener('click', () => addAllComments(comments), { once: true });
+    commentsLoaderButton.addEventListener('click', onCommentsLoaderButtonClick);
   }
 }
 
@@ -82,12 +86,12 @@ function addAllComments(comments) {
 const loadingComments = (comments) => {
   if (haveComments(comments)) {
     showElement(commentsLoaderButton);
-    const commentsCopy = comments.slice();
-    addAllComments(commentsCopy);
+    array = comments.slice();
+    addAllComments(array);
   } else {
     hideElement(commentsLoaderButton);
     hideElement(commentsCountContainer);
   }
 };
 
-export { removeComments, loadingComments, commentsLoaderButton, addAllComments };
+export { removeComments, loadingComments, commentsLoaderButton, addAllComments, onCommentsLoaderButtonClick };

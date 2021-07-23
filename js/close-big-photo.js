@@ -1,5 +1,6 @@
 import { bigPictureContainer } from './show-big-picture.js';
 import { isEscEvent, hideElement } from './utils.js';
+import { onCommentsLoaderButtonClick, commentsLoaderButton } from './loader-comments.js';
 
 
 const bigPictureCloseButton = document.querySelector('.big-picture__cancel');
@@ -15,7 +16,10 @@ const onBigPictureCloseButtonClick = () => closeBigPhoto();
 
 function closeBigPhoto() {
   hideElement(bigPictureContainer);
+
   document.body.classList.remove('modal-open');
+
+  commentsLoaderButton.removeEventListener('click', onCommentsLoaderButtonClick);
 
   document.removeEventListener('keydown', onDocumentKeydown);
   bigPictureCloseButton.removeEventListener('click', onBigPictureCloseButtonClick);
